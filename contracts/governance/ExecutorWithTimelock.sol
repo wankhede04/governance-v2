@@ -3,7 +3,7 @@ pragma solidity 0.7.5;
 pragma abicoder v2;
 
 import {IExecutorWithTimelock} from '../interfaces/IExecutorWithTimelock.sol';
-import {IAaveGovernanceV2} from '../interfaces/IAaveGovernanceV2.sol';
+import {IVolmexGovernance} from '../interfaces/IVolmexGovernance.sol';
 import {SafeMath} from '../dependencies/open-zeppelin/SafeMath.sol';
 
 /**
@@ -267,13 +267,13 @@ contract ExecutorWithTimelock is IExecutorWithTimelock {
    * @param proposalId Id of the proposal against which to test
    * @return true of proposal is over grace period
    **/
-  function isProposalOverGracePeriod(IAaveGovernanceV2 governance, uint256 proposalId)
+  function isProposalOverGracePeriod(IVolmexGovernance governance, uint256 proposalId)
     external
     view
     override
     returns (bool)
   {
-    IAaveGovernanceV2.ProposalWithoutVotes memory proposal = governance.getProposalById(proposalId);
+    IVolmexGovernance.ProposalWithoutVotes memory proposal = governance.getProposalById(proposalId);
 
     return (block.timestamp > proposal.executionTime.add(GRACE_PERIOD));
   }

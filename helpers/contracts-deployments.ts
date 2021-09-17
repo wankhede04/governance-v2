@@ -28,7 +28,7 @@ export const deployAaveGovernanceV2 = async (
   ];
   return withSaveAndVerify(
     await new AaveGovernanceV2Factory(await getFirstSigner()).deploy(...args),
-    eContractid.AaveGovernanceV2,
+    eContractid.VolmexGovernance,
     args,
     verify
   );

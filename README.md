@@ -14,7 +14,7 @@ The Aave Governance V2 has been audited by Peckshied, with the final report [her
 
 ## Planned configurations for mainnet
 
-### AaveGovernanceV2
+### VolmexGovernance
 
 - voting delay (time between a proposal is submitted and the voting is opened): 0 blocks, as for us this process is done beforehand in the governance forum
 - guardian: Aave Guardian multisig
@@ -60,12 +60,12 @@ You can install `@aave/governance-v2` as an NPM package in your Hardhat, Buidler
 Import at Solidity files:
 
 ```
-import {IAaveGovernanceV2} from "@aave/governance-v2/contracts/interfaces/IAaveGovernanceV2.sol";
+import {IVolmexGovernance} from "@aave/governance-v2/contracts/interfaces/IVolmexGovernance.sol";
 
 contract Misc {
 
   function vote(uint256 proposal, bool support) {
-    IAaveGovernanceV2(pool).submitVote(proposal, support);
+    IVolmexGovernance(pool).submitVote(proposal, support);
     {...}
   }
 }
@@ -76,7 +76,7 @@ The JSON artifacts with the ABI and Bytecode are also included into the bundled 
 Import JSON file via Node JS `require`:
 
 ```
-const GovernanceV2Artifact = require('@aave/governance-v2/artifacts/contracts/governance/AaveGovernanceV2.sol/AaveGovernanceV2.json');
+const GovernanceV2Artifact = require('@aave/governance-v2/artifacts/contracts/governance/VolmexGovernance.sol/VolmexGovernance.json');
 
 // Log the ABI into console
 console.log(GovernanceV2Artifact.abi)

@@ -2,7 +2,7 @@
 pragma solidity 0.7.5;
 pragma abicoder v2;
 
-import {IAaveGovernanceV2} from '../interfaces/IAaveGovernanceV2.sol';
+import {IVolmexGovernance} from '../interfaces/IVolmexGovernance.sol';
 import {IGovernanceStrategy} from '../interfaces/IGovernanceStrategy.sol';
 import {IProposalValidator} from '../interfaces/IProposalValidator.sol';
 import {SafeMath} from '../dependencies/open-zeppelin/SafeMath.sol';
@@ -54,7 +54,7 @@ contract ProposalValidator is IProposalValidator {
    * @return boolean, true if can be created
    **/
   function validateCreatorOfProposal(
-    IAaveGovernanceV2 governance,
+    IVolmexGovernance governance,
     address user,
     uint256 blockNumber
   ) external view override returns (bool) {
@@ -70,7 +70,7 @@ contract ProposalValidator is IProposalValidator {
    * @return boolean, true if can be cancelled
    **/
   function validateProposalCancellation(
-    IAaveGovernanceV2 governance,
+    IVolmexGovernance governance,
     address user,
     uint256 blockNumber
   ) external view override returns (bool) {
@@ -85,7 +85,7 @@ contract ProposalValidator is IProposalValidator {
    * @return true if user has enough power
    **/
   function isPropositionPowerEnough(
-    IAaveGovernanceV2 governance,
+    IVolmexGovernance governance,
     address user,
     uint256 blockNumber
   ) public view override returns (bool) {
@@ -103,7 +103,7 @@ contract ProposalValidator is IProposalValidator {
    * @param blockNumber Blocknumber at which to evaluate
    * @return minimum Proposition Power needed
    **/
-  function getMinimumPropositionPowerNeeded(IAaveGovernanceV2 governance, uint256 blockNumber)
+  function getMinimumPropositionPowerNeeded(IVolmexGovernance governance, uint256 blockNumber)
     public
     view
     override
@@ -125,7 +125,7 @@ contract ProposalValidator is IProposalValidator {
    * @param proposalId Id of the proposal to set
    * @return true if proposal passed
    **/
-  function isProposalPassed(IAaveGovernanceV2 governance, uint256 proposalId)
+  function isProposalPassed(IVolmexGovernance governance, uint256 proposalId)
     external
     view
     override
@@ -156,13 +156,13 @@ contract ProposalValidator is IProposalValidator {
    * @param proposalId Id of the proposal to verify
    * @return voting power needed for a proposal to pass
    **/
-  function isQuorumValid(IAaveGovernanceV2 governance, uint256 proposalId)
+  function isQuorumValid(IVolmexGovernance governance, uint256 proposalId)
     public
     view
     override
     returns (bool)
   {
-    IAaveGovernanceV2.ProposalWithoutVotes memory proposal = governance.getProposalById(proposalId);
+    IVolmexGovernance.ProposalWithoutVotes memory proposal = governance.getProposalById(proposalId);
     uint256 votingSupply = IGovernanceStrategy(proposal.strategy).getTotalVotingSupplyAt(
       proposal.startBlock
     );
@@ -177,13 +177,13 @@ contract ProposalValidator is IProposalValidator {
    * @param proposalId Id of the proposal to verify
    * @return true if enough For-Votes
    **/
-  function isVoteDifferentialValid(IAaveGovernanceV2 governance, uint256 proposalId)
+  function isVoteDifferentialValid(IVolmexGovernance governance, uint256 proposalId)
     public
     view
     override
     returns (bool)
   {
-    IAaveGovernanceV2.ProposalWithoutVotes memory proposal = governance.getProposalById(proposalId);
+    IVolmexGovernance.ProposalWithoutVotes memory proposal = governance.getProposalById(proposalId);
     uint256 votingSupply = IGovernanceStrategy(proposal.strategy).getTotalVotingSupplyAt(
       proposal.startBlock
     );

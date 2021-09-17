@@ -12,7 +12,7 @@ import {
   getGovernanceStrategy,
 } from '../../helpers/contracts-getters';
 import {tEthereumAddress} from '../../helpers/types';
-import {AaveGovernanceV2} from '../../types/AaveGovernanceV2';
+import {VolmexGovernance} from '../../types/VolmexGovernance';
 import {AaveTokenV2} from '../../types/AaveTokenV2';
 import {Executor} from '../../types/Executor';
 import {GovernanceStrategy} from '../../types/GovernanceStrategy';
@@ -29,7 +29,7 @@ export interface TestEnv {
   users: SignerWithAddress[];
   aave: AaveTokenV2;
   stkAave: AaveTokenV2; // TODO change to a mock of stkAAVE
-  gov: AaveGovernanceV2;
+  gov: VolmexGovernance;
   strategy: GovernanceStrategy;
   executor: Executor;
 }
@@ -45,7 +45,7 @@ const testEnv: TestEnv = {
   users: [] as SignerWithAddress[],
   aave: {} as AaveTokenV2,
   stkAave: {} as AaveTokenV2,
-  gov: {} as AaveGovernanceV2,
+  gov: {} as VolmexGovernance,
   strategy: {} as GovernanceStrategy,
   executor: {} as Executor,
 } as TestEnv;
